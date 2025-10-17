@@ -32,6 +32,9 @@ body {
             height:12rem;
             width: 100%;
             flex-grow:1;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         &--2 {
@@ -82,6 +85,80 @@ body {
     }
 }
 
+.container {
+    max-width: 120rem;
+    margin:0 auto;
+}
+
+.hero {
+    min-height: 60rem;
+    background: #afb9bb;
+    padding:10rem 2rem 2rem 2rem;
+
+    &__heading {
+        font-size: 3.6rem;
+        text-align: center;
+    }
+
+    .big-word-text {
+        color: #a90000;
+        text-transform: uppercase;
+    }
+
+    &__text {
+        max-width: 65rem;
+        margin: 1rem auto;
+
+        p {
+            font-size: 1.8rem;
+
+            &:not(:last-child){
+                margin-bottom: 1rem;
+            }
+        }
+
+    }
+
+    &__strong-text {
+        background: linear-gradient(to bottom, transparent 65%, rgba(255, 0, 0, .2) 65%);
+    }
+}
+
+
+.menu-btn {
+    display:none;
+    padding: .8rem;
+    border:none;
+    background: transparent;
+    cursor: pointer;
+
+    &__hamburger-line {
+        background: #ccc;
+        height: 3px;
+        width: 3rem;
+        margin: .5rem;
+        transition: all .3s;
+        pointer-events: none;
+    }
+
+
+    &.open &__hamburger-line {
+
+        &--1 {
+            transform: rotate(50deg) translateY(14px);
+        }
+
+        &--2 {
+            opacity: 0;
+        }
+
+        &--3 {
+            transform: rotate(-50deg) translateY(-13px) translateX(-1px);
+        }
+    }
+}
+
+
 
 @media (max-width: 800px) {
 
@@ -111,11 +188,26 @@ body {
             }
             &--2 {
                 background: #cbd0d2;
-                padding: 2rem;
+                padding: 0;
+                box-shadow: 0 0 1rem rgba(0,0,0,.25);
+                height: 0;
+                overflow: hidden;
+                transition: all .3s linear;
+
+                &.open {
+                    display: flex;
+                    padding: 2rem;
+                    height: 20rem;
+                }
             }
         }
 
 
+
+    }
+
+    .menu-btn {
+        display: block;
     }
 
     .nav {
@@ -131,6 +223,19 @@ body {
         &__link:link,
         &__link:visited {
             color: #555;
+
+            &:hover {
+                color: #555;
+            }
+        }
+    }
+
+    .hero {
+        padding:4rem 2rem 2rem 2rem;
+
+        &__text {
+            p {font-size: 1.6rem;}
+            margin-top: 2rem;
         }
     }
 

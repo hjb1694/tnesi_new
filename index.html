@@ -14,6 +14,11 @@
         <div class="header__container">
             <div class="header__part header__part--1">
                 <img class="header__logo" src="./assets/img/es_initiative_logo.png" />
+                <button class="menu-btn">
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--1"></div>
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--2"></div>
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--3"></div>
+                </button>
             </div>
             <div class="header__part header__part--2">
                  <nav class="nav">
@@ -35,5 +40,30 @@
             </div>
         </div>
     </header>
+    <section class="hero">
+        <div class="container">
+            <h2 class="hero__heading">
+                We Have a <span class="big-word-text">big</span> Problem in Tennessee
+            </h2>
+            <div class="hero__text">
+                <p>Our <em>EMS personnel, firefighters, and rescue squad crews</em> are among the many <strong class="hero__strong-text">heroes</strong> that serve our communities. Many of these men and women are even volunteers dedicating their time and energy to help in critical moments when seconds count.</p>
+
+                <p>These services we take for granted are <strong class="hero__strong-text">essential</strong> and an <strong class="hero__strong-text">integral</strong> part of public safety. Sadly, our politicians, both at the state and local levels, treat these crucial resources as second-class as compared to law enforcement.</p>
+
+                <p>Don't get me wrong. Our law enforcement is highly valued too, but neglecting other public safety providers and their cause is unacceptable. This needs to <strong class="hero__strong-text">STOP</strong>!</p> 
+            </div>
+        </div>
+    </section>
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const headerPart2 = document.querySelector('.header__part--2');
+
+        const toggleMenu = () => {
+            menuBtn.classList.toggle('open');
+            headerPart2.classList.toggle('open');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+    </script>
 </body>
 </html>
