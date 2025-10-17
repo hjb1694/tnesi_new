@@ -179,7 +179,7 @@ body {
         background: rgba(0,0,0,.7);
         margin-top: 4rem;
         box-shadow: 0 0 .5rem rgba(0,0,0,.5);
-        color: #fff;
+        color: #f1f1f1;
         text-align: center;
     }
 }
@@ -281,6 +281,11 @@ body {
     font-family: inherit;
     font-weight: bold;
     border-radius: .5rem;
+    transition: background .3s;
+
+    &:hover {
+        background: #000;
+    }
 }
 
 .hb-link,
@@ -289,6 +294,58 @@ body {
     color: #eee;
 }
 
+.problems-page {
+    background: #afb9bb;
+    min-height: 70vh;
+    padding: 10rem 2rem 4rem 2rem;
+
+    &__heading {
+        font-size: 3.4rem;
+        text-align: center;
+    }
+
+    &__intro-text {
+        font-size: 1.8rem;
+        margin: 2rem 0;
+        text-align: center;
+    }
+}
+
+.issue-tile {
+    background: #cfcfcf;
+    border: 3px solid #216b79;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 0 .5rem rgba(0,0,0,.2);
+
+    &:not(:last-child){
+        margin-bottom: 2rem;
+    }
+
+    &__heading {
+        font-size: 2rem;
+        color: #216b79;
+        text-align: left;
+    }
+
+    &__body {
+        margin-top:1.5rem;
+        p {
+            font-size: 1.6rem;
+            line-height: 1.8;
+
+            &:not(:last-child){
+                margin-bottom: 1.5rem;
+            }
+        }
+    }
+}
+
+
+.big-word-text {
+    color: #a90000;
+    text-transform: uppercase;
+}
 
 @media (max-width: 800px) {
 
@@ -372,6 +429,10 @@ body {
     .about-section {
         &__image {
             width: 18rem;
+        }
+
+        &__text {
+            p {font-size: 1.6rem;}
         }
     }
 
