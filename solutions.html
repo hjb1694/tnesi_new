@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tennessee Emergency Services Initiative | Problems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <div class="header__part header__part--1">
+                <img class="header__logo" src="./assets/img/es_initiative_logo.png" />
+                <button class="menu-btn">
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--1"></div>
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--2"></div>
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--3"></div>
+                </button>
+            </div>
+            <div class="header__part header__part--2">
+                 <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="/" class="nav__link">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/problems.html" class="nav__link">Problems</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/solutions.html" class="nav__link">Solutions</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#" class="nav__link">Take Action</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section class="solutions-page">
+        <div class="container">
+            <h1 class="solutions-page__heading">Potential Solutions</h1>
+            <p class="solutions-page__intro-text">We cannot allow critical issues affecting our heroes and public safety organizations to go unchecked.</p>
+            <div class="solution-list">
+                <div class="solution-tile">
+                    <h3 class="solution-tile__heading">Recognize Fire, EMS, and Rescue as Integral Public Safety Functions</h3>
+                    <div class="solution-tile__body">
+                        <p>While Tennessee just recently recognized EMS as an essential service, there is still a lot to be done. Attitudes still do not reflect the recent essential service declaration.</p>
+                        <p>Legislators need to recognize and approach emergency services with the same respect and importance as law enforcement. Leaders need to look more closely into the woes all our first responders face. We are all in this together. </p>
+                    </div>
+                </div>
+                <div class="solution-tile">
+                    <h3 class="solution-tile__heading">Consider Special Purpose Districts to Fill Voids</h3>
+                    <div class="solution-tile__body">
+                       <p>Special Purpose Districts are autonomous government entities that serve a singular purpose. They are often overseen by a board of directors, elected by citizens in the district or appointed by other local leaders, and there are more opportunities for checks and balances. These entities exist for utilities (aka Utility Boards) and school systems throughout Tennessee, but they are non-existant for emergency services. These districts can expand or contract across multiple counties or municipalities. </p>
+                       <p>Many county governmental bodies do not want to handle fire and emergency services. Many do not even fund these services, leaving non-profit and for-profit entities to fill the voids and rely solely on generous donations or subsciption fees.</p>
+                    </div>
+                </div>
+                <div class="solution-tile">
+                    <h3 class="solution-tile__heading">Offer Incentives For Volunteers</h3>
+                    <div class="solution-tile__body">
+                      <p>Many of these essential services are provided by volunteers. Some states offer incentives to encourage recruitment and retention of volunteers. These incentives can include any of the following:</p>
+                      <ul class="incentive-list">
+                        <li>reduced property taxes</li>
+                        <li>reduced vehicle registration fees</li>
+                        <li>retirement pensions</li>
+                        <li>free education opportunities</li>
+                        <li>training program reimbursements</li>
+                        <li>scholarships</li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="solution-tile">
+                    <h3 class="solution-tile__heading">Provide the Same Protections as Law Enforcement</h3>
+                    <div class="solution-tile__body">
+                      <p>Tennessee is one of the few states that do not have enhanced penalties for assaults against EMS personnel or firefighters. Recently, Tennessee passed legislation that upgraded assaults against law enforcement as a felony, but they left out EMS and Fire. Assaults against ANY first responder should be a felony!</p>
+                    </div>
+                </div>
+                <div class="solution-tile">
+                    <h3 class="solution-tile__heading">More Advocacy and Lifting of Red Tape</h3>
+                    <div class="solution-tile__body">
+                      <p>The Tennessee EMS Board should expand its functions to provide more advocacy. State and local leaders need to be more proactive in addressing issues emergency services face in Tennessee. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <img src="/assets/img/es_initiative_logo.png" class="footer__logo" alt="Footer Logo" />
+        <small>&copy;2025 Hayden Bradfield</small>
+        <p>Created with &hearts; by <a class="hb-link" href="https://haydenbradfield.com">Hayden Bradfield</a></p>
+    </footer>
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const headerPart2 = document.querySelector('.header__part--2');
+
+        const toggleMenu = () => {
+            menuBtn.classList.toggle('open');
+            headerPart2.classList.toggle('open');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>

@@ -294,7 +294,8 @@ body {
     color: #eee;
 }
 
-.problems-page {
+.problems-page,
+.solutions-page {
     background: #afb9bb;
     min-height: 70vh;
     padding: 10rem 2rem 4rem 2rem;
@@ -311,7 +312,8 @@ body {
     }
 }
 
-.issue-tile {
+.issue-tile,
+.solution-tile {
     background: #cfcfcf;
     border: 3px solid #216b79;
     border-radius: 1rem;
@@ -338,6 +340,11 @@ body {
                 margin-bottom: 1.5rem;
             }
         }
+    }
+
+    .incentive-list {
+        list-style: inside;
+        font-size: 1.8rem;
     }
 }
 
