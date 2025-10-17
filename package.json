@@ -1,0 +1,16 @@
+{
+  "name": "tnesi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "sass:build": "sass --style=compressed ./src/scss/main.scss ./assets/style.css",
+    "sass:watch": "sass --watch --style=compressed ./src/scss/main.scss ./assets/style.css"
+  },
+  "keywords": [],
+  "author": "Hayden Bradfield",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "sass": "^1.93.2"
+  }
+}
