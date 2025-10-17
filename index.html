@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">  
-    <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="/assets/style.css" />
 </head>
 <body>
     <header class="header">
@@ -64,10 +64,33 @@
             </div>
     </section>
     <section class="articles-section">
-        <h2 class="articles-section__heading">Articles</h2>
+        <h2 class="articles-section__heading">Featured Articles</h2>
+        <div class="articles-list">
+            <a class="articles-tile">
+                <img src="./assets/img/jail_image.jpg" class="articles-tile__image" />
+                <div class="articles-tile__body">
+                    <h3>Unlike most states, Tennessee lacks enhanced charges for assaults on EMS and Firefighters</h3>
+                </div>
+            </a>
+            <a class="articles-tile">
+                <img src="./assets/img/gavel.jpg" class="articles-tile__image" />
+                <div class="articles-tile__body">
+                    <h3>Two-Tiered System Forgiving of Misbehaving Cops; Punishing of EMS Personnel</h3>
+                </div>
+            </a>
+            <a class="articles-tile">
+                <img src="./assets/img/white_oak_vfd_image.png" class="articles-tile__image" />
+                <div class="articles-tile__body">
+                    <h3>Problems at White Oak Volunteer Fire Department Untouched by County and State Leaders</h3>
+                </div>
+            </a>
+        </div>
+        <a href="#" class="articles-see-all-btn">See All &rarr;</a>
     </section>
     <footer class="footer">
-
+        <img src="/assets/img/es_initiative_logo.png" class="footer__logo" alt="Footer Logo" />
+        <small>&copy;2025 Hayden Bradfield</small>
+        <p>Created with &hearts; by <a class="hb-link" href="https://haydenbradfield.com">Hayden Bradfield</a></p>
     </footer>
     <script>
         const menuBtn = document.querySelector('.menu-btn');
