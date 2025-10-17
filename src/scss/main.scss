@@ -98,6 +98,7 @@ body {
     &__heading {
         font-size: 3.6rem;
         text-align: center;
+        margin-bottom: 2rem;
     }
 
     .big-word-text {
@@ -106,14 +107,14 @@ body {
     }
 
     &__text {
-        max-width: 65rem;
+        max-width: 80rem;
         margin: 1rem auto;
 
         p {
-            font-size: 1.8rem;
+            font-size: 2rem;
 
             &:not(:last-child){
-                margin-bottom: 1rem;
+                margin-bottom: 2rem;
             }
         }
 
@@ -156,6 +157,57 @@ body {
             transform: rotate(-50deg) translateY(-13px) translateX(-1px);
         }
     }
+}
+
+.about-section {
+    background: linear-gradient(to right, rgba(255,255,255,.2), rgba(255,255,255,.25)), url(../assets/img/house_fire_2.jpg) center / cover;
+    box-shadow: 0 0 1rem rgba(0,0,0,.24);
+    padding: 5rem 0 0 0;
+
+    &__image {
+        display: block;
+        margin:2rem auto;
+        width: 24rem;
+        border-radius: 1rem;
+        box-shadow: 0 0 .8rem rgba(0,0,0,.6);
+        // border:5px solid #656565;
+    }
+
+    &__text {
+        font-size: 1.8rem;
+        padding: 5rem 2rem;
+        background: rgba(0,0,0,.7);
+        margin-top: 4rem;
+        box-shadow: 0 0 .5rem rgba(0,0,0,.5);
+        color: #fff;
+        text-align: center;
+    }
+}
+
+.articles-section {
+    min-height: 40rem;
+    background: #216b79;
+    padding: 4rem 2rem;
+
+    &__heading {
+        text-align: center;
+        font-size: 2.8rem;
+        color: #c9e5ec;
+        text-transform: uppercase;
+    }
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.about-link,
+.about-link:link,
+.about-link:visited {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 2px;
 }
 
 
@@ -231,11 +283,17 @@ body {
     }
 
     .hero {
-        padding:4rem 2rem 2rem 2rem;
+        padding:4rem 2rem 4rem 2rem;
 
         &__text {
-            p {font-size: 1.6rem;}
+            p {font-size: 1.7rem;}
             margin-top: 2rem;
+        }
+    }
+
+    .about-section {
+        &__image {
+            width: 18rem;
         }
     }
 
