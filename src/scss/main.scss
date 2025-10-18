@@ -13,6 +13,10 @@ body {
     font-family: 'Poppins';
 }
 
+.logo-link{
+    display: block;
+}
+
 .header {
     height: 12rem;
     background: #000;
@@ -252,6 +256,7 @@ body {
         object-fit: cover;
         object-position: center;
         border-radius: .5rem 0 0 .5rem;
+        flex-shrink: 0;
     }
 
     &__body {
@@ -417,7 +422,15 @@ body {
     }
     &__body{
         min-height:70vh;
-        background: #ccc;
+        background: #afb9bb;
+        padding:4rem 2rem;
+    }
+    .articles-tile{
+        background: #eee;
+
+        &__image {
+            border-bottom:1px solid #ccc;
+        }
     }
 }
 
@@ -534,6 +547,12 @@ body {
         &__body {
             p{font-size: 1.6rem;}
         }
+    }
+
+    .problems-page,
+    .solutions-page,
+    .take-action-page {
+        padding: 5rem 2rem 4rem 2rem;
     }
 
 }
