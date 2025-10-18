@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tennessee Emergency Services Initiative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <div class="header__part header__part--1">
+                <a class="logo-link" href="/">
+                    <img class="header__logo" src="/assets/img/es_initiative_logo.png" />
+                </a>
+                <button class="menu-btn">
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--1"></div>
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--2"></div>
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--3"></div>
+                </button>
+            </div>
+            <div class="header__part header__part--2">
+                 <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="/" class="nav__link">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/problems.html" class="nav__link">Problems</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/solutions.html" class="nav__link">Solutions</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/take-action.html" class="nav__link">Take Action</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section class="article-page">
+        <section class="article-page__header">
+            <div class="container">
+                <h1>While Misbehaving Cops Hop Around, a Misdemeanor Could Be Career-Ending For an EMT</h1>
+                <p>by Hayden Bradfield</p>
+                <p>Published Monday, May 20, 2025</p>
+            </div>
+        </section>
+        <section class="article-page__body">
+            <div class="container">
+                <p>
+                    Recently, WBIR published an <a href="https://www.wbir.com/article/news/investigations/max-smith-union-county-stalking/51-201524bd-ee79-4a43-87c0-791b76f1d629">investigative article surrounding a law enforcement officer with a troubled past.</a> Max Smith, while having a violent history of alleged domestic abuse and misconduct, has worked for multiple law enforcement agencies throughout Tennessee. In addition, Smith has previously been accused of using his position of authority to threaten his victims. 
+                </p>
+                <p>
+                    A similar situation has been reported involving a police officer from Lafollette, TN. <a href="https://www.wbir.com/article/news/tennessee-officer-resigns-second-time-alleged-altercation/51-3fc74628-8af1-4137-92e0-87e78a45d478">Sgt. Isaiah Lloyd was accused of groping a woman</a> while working for the Tennessee Highway Patrol. WBIR reports this incident occurred in 2017 as he quit before being terminated. In addition, Lloyd was accused of a domestic situation involving his wife in Caryville. Despite his alleged offenses and suspended certifications, he was hired on with the City of LaFollette. 
+                </p>
+                <p>
+                    These two examples are clearly alarming. These officers should have been blacklisted, preventing them from hopping to different agencies. These two examples also shed light on a two-tiered justice system that is forgiving of misbehaving officers while severely punishing EMS personnel. 
+                </p>
+                <p>
+                    Here in Tennessee, EMTs and Paramedics can only practice with a valid, state-issued professional license. EMS personnel must maintain a set of criteria to obtain, retain, and renew these licenses. If a complaint is filed, the EMS board may place sanctions on a license, up to and sometimes including revocation. If an EMS professional's license has been suspended or revoked, that information is then added to a database, and that person is prevented from gaining employment anywhere throughout the state. In addition, that EMT or Paramedic may also face disciplinary action at the national-level, preventing him or her from pursuing a license in any other state. This is a true career-ender for any EMT or Paramedic, and regaining licensure later is extremely challenging. 
+                </p>
+                <p>
+                     EMS personnel in Tennessee who face disciplinary action are not entitled to the same due process as someone facing a conviction in a court of law. The accused may obtain legal representation, but this representation is not provided to the accused if he or she cannot afford it. In addition, the accused is responsible for finding their own legal representation where it may be difficult to find attorneys who specialize in professional license matters. This is extremely difficult for these EMS professionals who are one of the lowest-paying healthcare providers in the nation.
+                </p>
+                <p>
+                    So why isn't the same concept or principal applied to law enforcement officers? I cannot speak for the law enforcement certification process, but clearly there are voids allowing potentially dangerous people to hold positions of authority and power. This sets up a dangerous precident for abuse. This also exposes an unfair, two-tiered system that disrespects not only EMS professionals, but all public safety providers. 
+                </p>
+            </div>
+        </section>
+    </section>
+    </section>
+    <footer class="footer">
+        <img src="/assets/img/es_initiative_logo.png" class="footer__logo" alt="Footer Logo" />
+        <small>&copy;2025 Hayden Bradfield</small>
+        <p>Created with &hearts; by <a class="hb-link" href="https://haydenbradfield.com">Hayden Bradfield</a></p>
+    </footer>
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const headerPart2 = document.querySelector('.header__part--2');
+
+        const toggleMenu = () => {
+            menuBtn.classList.toggle('open');
+            headerPart2.classList.toggle('open');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>

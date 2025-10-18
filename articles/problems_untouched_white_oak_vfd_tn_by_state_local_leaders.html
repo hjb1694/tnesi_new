@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tennessee Emergency Services Initiative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <div class="header__part header__part--1">
+                <a class="logo-link" href="/">
+                    <img class="header__logo" src="/assets/img/es_initiative_logo.png" />
+                </a>
+                <button class="menu-btn">
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--1"></div>
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--2"></div>
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--3"></div>
+                </button>
+            </div>
+            <div class="header__part header__part--2">
+                 <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="/" class="nav__link">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/problems.html" class="nav__link">Problems</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/solutions.html" class="nav__link">Solutions</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/take-action.html" class="nav__link">Take Action</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section class="article-page">
+        <section class="article-page__header">
+            <div class="container">
+                <h1>Problems at White Oak Volunteer Fire Department Untouched by County and State Leaders</h1>
+                <p>by Hayden Bradfield</p>
+                <p>Published Friday, February 28, 2025</p>
+            </div>
+        </section>
+        <section class="article-page__body">
+            <div class="container">
+                <p>
+                    DUFF, TN - Upon viewing the outside of a small, rural fire station located in the quaint community of White Oak, Tennessee, nothing
+                    appears out of the ordinary. This all-volunteer fire department has served a broad area of Campbell County for many years, responding
+                    to calls not only in the unincorporated community of White Oak but also the communities of Morley, Duff, and Habersham. Passing by this
+                    station while traveling down a backcountry two-lane road, not much may come to mind, but under the surface lies major problems endangering the
+                    lives and safety of residents and the many recreational tourists that frequent this area.
+                </p>
+                <p>
+                    The community of White Oak is nestled far away in a remote location of Campbell County. There are only two routes available to access this
+                    location by car, either traveling down the windy and trecherous TN Route 90 that scales the cliffsides of mountains or taking Duff Road, a rough
+                    stretch of road that, at the time of writing, is currently being worked on. Over the years, this region has experienced an influx of ATV traffic,
+                    a popular destination by many. In addition, this area has also seen a share of ATV accidents involving trauma, structural and brush fires, destructive storms,
+                    and medical emergencies.
+                </p>
+                <p>
+                    This area is within an "ambulance desert", where ambulance response times of 20-30+ minutes are not uncommon. This area is not only experiencing a lack
+                    of medical first responders, but the one fire department that serves this area is lagging in the few types of emergencies they respond to. Numerous complaints
+                    have been voiced regarding leadership corruption, nepotism, lack of training, and the misappropriaion of funds. Behind the bay doors sit trucks and equipment
+                    that is corroding, outdated, and potentially hazardous.
+                </p>
+                <p>
+                    Efforts have been made to improve the voids in emergency services the community faces, only to be disregarded by both county and state officials. As the area's 
+                    only volunteer fire department crumbles, initiatives to establish a district to take on the task of EMS first response and rescue have been placed on a backburner.
+                    Other initiatives such as improvements to emergency radio communications, a critical issue in the area, have been met with scorn.
+                </p>
+                <p>
+                    While some residents of White Oak hope to see changes, it is only a matter of time before disaster and tragedy strikes. Until county and state
+                    officials make emergency services a priority, we will continue to see the deterioration of emergency services across many rural areas.
+                </p>
+            </div>
+        </section>
+    </section>
+    </section>
+    <footer class="footer">
+        <img src="/assets/img/es_initiative_logo.png" class="footer__logo" alt="Footer Logo" />
+        <small>&copy;2025 Hayden Bradfield</small>
+        <p>Created with &hearts; by <a class="hb-link" href="https://haydenbradfield.com">Hayden Bradfield</a></p>
+    </footer>
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const headerPart2 = document.querySelector('.header__part--2');
+
+        const toggleMenu = () => {
+            menuBtn.classList.toggle('open');
+            headerPart2.classList.toggle('open');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>
