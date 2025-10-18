@@ -295,7 +295,8 @@ body {
 }
 
 .problems-page,
-.solutions-page {
+.solutions-page,
+.take-action-page {
     background: #afb9bb;
     min-height: 70vh;
     padding: 10rem 2rem 4rem 2rem;
@@ -313,7 +314,8 @@ body {
 }
 
 .issue-tile,
-.solution-tile {
+.solution-tile,
+.action-tile {
     background: #cfcfcf;
     border: 3px solid #216b79;
     border-radius: 1rem;
@@ -352,6 +354,52 @@ body {
 .big-word-text {
     color: #a90000;
     text-transform: uppercase;
+}
+
+.about-page {
+    &__header{
+        min-height:30rem;
+        background:#216b79;
+        padding:8rem 2rem 5rem 2rem;
+    }
+
+    &__header-contents {
+        display: flex;
+        max-width: 60rem;
+        align-items: center;
+        gap: 2rem;
+        margin:0 auto;
+    }
+    &__body{
+        padding: 5rem 2rem;
+        background: #ccc;
+
+        p{
+            font-size: 1.8rem;
+
+            &:not(:last-child){
+                margin-bottom: 1.5rem;
+            }
+        }
+    }
+}
+
+.about-img {
+    width: 18rem;
+    border-radius: 1rem;
+    box-shadow:0 0 1rem rgba(0,0,0,.4);
+}
+
+.about-h1{
+    font-size: 2rem;
+    color: #111;
+}
+
+.about-h2{
+    font-size: 1.8rem;
+    color: #bbb;
+    font-weight: normal;
+    margin-top: 1.5rem;
 }
 
 @media (max-width: 800px) {
@@ -460,4 +508,25 @@ body {
         }
     }
 
+    .about-page {
+        &__header {
+            padding: 6rem 2rem 4rem 2rem;
+        }
+        &__body {
+            p{font-size: 1.6rem;}
+        }
+    }
+
+}
+
+
+@media (max-width:950px) {
+
+    .about-page{
+        &__header-contents {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+    }
 }
