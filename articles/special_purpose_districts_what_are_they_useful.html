@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tennessee Emergency Services Initiative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <div class="header__part header__part--1">
+                <a class="logo-link" href="/">
+                    <img class="header__logo" src="/assets/img/es_initiative_logo.png" />
+                </a>
+                <button class="menu-btn">
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--1"></div>
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--2"></div>
+                    <div class="menu-btn__hamburger-line menu-btn__hamburger-line--3"></div>
+                </button>
+            </div>
+            <div class="header__part header__part--2">
+                 <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="/" class="nav__link">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/problems.html" class="nav__link">Problems</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/solutions.html" class="nav__link">Solutions</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/take-action.html" class="nav__link">Take Action</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section class="article-page">
+        <section class="article-page__header">
+            <div class="container">
+                <h1>Special Purpose Districts: What are they? Can they be useful?</h1>
+                <p>by Hayden Bradfield</p>
+                <p>Published Saturday, March 1, 2025</p>
+            </div>
+        </section>
+        <section class="article-page__body">
+            <div class="container">
+                <p>
+                    Cities and towns, also called municipalities, often (but not always) have their own fire departments. What if you live outside the corporate city or town limits?
+                    What about Emergency Medical Services? How are these handled county-wide? Many of these answers depend on which county you reside in.
+                </p>
+                <p>
+                    In one west Tennessee county, a family found out the hard way. As their home was actively burning, a fire service refused to put out the fire
+                    as the family stood there. What happened? They forgot to pay a subscription fee. Despite the family's pleas to pay on the spot, their request was denied.
+                </p>
+                <p>
+                    In the case of the Obion County situation, the family lived outside city limits but within the county. Residents living outside the city could opt to pay
+                    a subscription fee to the city to respond to their residence. Obion county did not have a county-wide fire department, and a non-profit volunteer fire department
+                    apparently did not exist to serve their area. This story sparked outrage nationwide, and spawned a debate on who should be providing these services.
+                </p>
+                <p>
+                    Many would argue fire departments and EMS are basic public safety services that would be funded through their tax dollars. Sadly, many counties do not see it that way.
+                    Knox County, Tennessee, home to the City of Knoxville and the state's flagship university, the University of Tennessee, also has a subscription-based model
+                    for residents who live outside the corporate city limits of Knoxville. Recently, Knox County generated a record billion-dollar tax revenue for the first time, although addressing fire and emergency services 
+                    was not a priority, and never really has. Rural Metro Fire, a for-profit company, provides fire services to the unincorporated parts of Knox County along with the Town of Farragut. Concerns and studies
+                    indicated these subscription fees unfairly burden willing subscribers, as Rural Metro will respond to anyone regardless if a subscription fee had been paid. Although, failure to pay an annual subscription will
+                    result in a massive bill if an emergency were to ever occur.
+                </p>
+                <p>
+                    Pertaining to Emergency Medical Services (EMS)/ambulance services, counties are required to ensure an established ambulance service is in place. Some counties opt to contract
+                    with a private ambulance provider, granting them a monopoly on 911 medical emergencies. It is also a common occurance for counties to have their own EMS departments. Others rely
+                    on rescue squads and other non-profit entities to provide these services.
+                </p>
+                <p>
+                    Now that these service models have been explained, what about the option for a special purpose district? Special purpose districts, also called "Authorities" in some places, are
+                    governmental entities that serve a singular purpose. They are autonomous from county and city governmental entities, and their district coverage can span across county lines
+                    and even cover municipalities. These entities do exist in Tennessee, examples being utility districts and school systems. These districts are overseen by a board of directors, with
+                    its members being elected by the residents, appointed by state and/or local leaders, or a combination of both. Sadly, at this time, these districts do not exist for the purpose of
+                    fire and emergency services in Tennessee. Could this be an answer to fill voids in Tennessee?
+                </p>
+                <p>
+                    A good example to look at is West Metro Fire Rescue, serving Lakewood, Colorado and unincorporated portions of counties within that state. While a special purpose district like
+                    this one does not need to be this elaborate, it is an example of how these special purpose districts could benefit many areas. Citizens within the district can have involvement
+                    in key decisions with transparency, unlike many private entities. Citizens can attend board meetings and vote on levies and other key concerns. With the non-profit-organization fire departments
+                    and rescue squads that serve many areas in Tennessee, voting is often reserved internally only for its own volunteer members.
+                </p>
+                <p>
+                    What are your thoughts?
+                </p>
+            </div>
+        </section>
+    </section>
+    </section>
+    <footer class="footer">
+        <img src="/assets/img/es_initiative_logo.png" class="footer__logo" alt="Footer Logo" />
+        <small>&copy;2025 Hayden Bradfield</small>
+        <p>Created with &hearts; by <a class="hb-link" href="https://haydenbradfield.com">Hayden Bradfield</a></p>
+    </footer>
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const headerPart2 = document.querySelector('.header__part--2');
+
+        const toggleMenu = () => {
+            menuBtn.classList.toggle('open');
+            headerPart2.classList.toggle('open');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>
