@@ -402,6 +402,25 @@ body {
     margin-top: 1.5rem;
 }
 
+.articles-page {
+    &__header {
+        min-height:15rem;
+        background:#216b79;
+        padding: 8rem 2rem 4rem 2rem;
+
+        h1{
+            text-align:center;
+            font-size: 3rem;
+            color:#111;
+            text-transform: uppercase;
+        }
+    }
+    &__body{
+        min-height:70vh;
+        background: #ccc;
+    }
+}
+
 @media (max-width: 800px) {
 
     .header {
