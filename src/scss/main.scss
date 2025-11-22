@@ -418,7 +418,7 @@ body {
         h1{
             text-align:center;
             font-size: 3rem;
-            color:#111;
+            color:#c9e5ec;
             text-transform: uppercase;
         }
     }
@@ -440,23 +440,26 @@ body {
     &__header {
         min-height:15rem;
         background:#257383;
-        padding: 10rem 2rem 4rem 2rem;
+        padding: 12rem 2rem 4rem 2rem;
 
         h1{
             font-size: 3rem;
-            color:#111;
+            color:#c9e5ec;
         }
 
         p{
             margin:2rem 0;
-            color: #ccc;
+            color: #f3f3f3;
             font-size: 1.4rem;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap:.5rem;
         }
     }
     &__body{
         min-height:70vh;
-        background: #afb9bb;
+        background: #dfe9ec;
         padding:4rem 2rem;
 
         p {
@@ -469,21 +472,25 @@ body {
     }
 
     table {
-        border:1px solid #000;
+        border:none;
         border-collapse: collapse;
-        margin-top: 3rem;
+        margin:4rem auto;
+        box-shadow: 0 0 .5rem rgba(0,0,0,.5);
 
         td, th {
-            border: 1px solid #000;
             padding: 1rem;
-            background: #ccc;
+            background: #fff;
             font-size: 1.2rem;
 
         }
 
+        tr{
+            border-bottom: 1px solid #aaa;
+        }
+
         tr:nth-child(odd){
              td, th{
-                background: #dadada;
+                background: #f3f3f3;
             }
         }
     }
