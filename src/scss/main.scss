@@ -235,6 +235,9 @@ body {
 
     p {
         font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 3px;
     }
 }
 
@@ -381,11 +384,13 @@ body {
         margin:0 auto;
     }
     &__body{
-        padding: 5rem 2rem;
-        background: #ccc;
+        padding: 6rem 2rem;
+        background: #dfe9ec;
 
         p{
             font-size: 1.8rem;
+            line-height: 1.7;
+            color: #333;
 
             &:not(:last-child){
                 margin-bottom: 1.5rem;
@@ -400,16 +405,17 @@ body {
     box-shadow:0 0 1rem rgba(0,0,0,.4);
 }
 
-.about-h1{
-    font-size: 2rem;
-    color: #111;
-}
-
-.about-h2{
-    font-size: 1.8rem;
-    color: #bbb;
-    font-weight: normal;
-    margin-top: 1.5rem;
+.about-heading {
+    &--primary {
+        font-size: 2rem;
+        color: #c9e5ec;
+    }
+    &--sub {
+        font-size: 1.8rem;
+        color: #efefef;
+        font-weight: normal;
+        margin-top: 1.5rem;
+    }
 }
 
 .articles-page {
@@ -562,7 +568,7 @@ body {
         &__link,
         &__link:link,
         &__link:visited {
-            color: #555;
+            color: #333;
 
             &:hover {
                 color: #555;
