@@ -522,6 +522,11 @@ body {
         display: block;
         line-height: 1.2;
         margin: 1rem 0;
+
+        a {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
     }
 }
 
