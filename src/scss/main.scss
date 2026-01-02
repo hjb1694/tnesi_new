@@ -506,6 +506,26 @@ body {
     }
 }
 
+.references {
+    margin: 2rem 0;
+
+    &__heading {
+        font-size: 2rem;
+    }
+}
+
+.reference-list {
+    list-style-position: inside;
+
+    &__item {
+        font-size: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+        margin: 1rem 0;
+    }
+}
+
 @media (max-width: 800px) {
 
     .header {
