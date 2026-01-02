@@ -520,7 +520,7 @@ body {
     &__item {
         font-size: 1.4rem;
         display: flex;
-        flex-direction: column;
+        flex-flow: column wrap;
         line-height: 1.2;
         margin: 1rem 0;
     }
