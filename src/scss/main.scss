@@ -519,8 +519,7 @@ body {
 
     &__item {
         font-size: 1.4rem;
-        display: flex;
-        flex-flow: column wrap;
+        display: block;
         line-height: 1.2;
         margin: 1rem 0;
     }
