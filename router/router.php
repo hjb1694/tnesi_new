@@ -21,6 +21,11 @@ function use_router($app) {
         return $view->render($response, 'solutions.page.twig');
     });
 
+    $app->get('/take-action', function (Request $request, Response $response) {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'take_action.page.twig');
+    });
+
 }
 
 ?>

@@ -358,8 +358,18 @@ body {
     }
 
     .incentive-list {
-        list-style: inside;
+        list-style: none;
         font-size: 1.8rem;
+
+        .incentive-item {
+            display: flex;
+            align-items: center;
+            column-gap: .5rem;
+
+            &__marker {
+                width:3rem;
+            }
+        }
     }
 }
 
@@ -622,6 +632,11 @@ body {
     display: block;
     max-width: 100%;
     margin: 2rem 0;
+}
+
+.issue-list,
+.solution-list {
+    margin-top: 4rem;
 }
 
 @media (max-width: 800px) {
