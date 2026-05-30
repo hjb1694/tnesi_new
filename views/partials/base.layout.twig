@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}{% endblock head %}
+</head>
+<body>
+    {% include 'partials/header.partial.twig' %}
+    <main>
+        {% block main %}{% endblock main %}
+    </main>
+    {% include 'partials/footer.partial.twig' %}
+    <script src="/assets/js/header_toggle.min.js"></script>
+    {% block scripts %}{% endblock scripts %}
+</body>
+</html>
