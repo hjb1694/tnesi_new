@@ -1,7 +1,11 @@
 {% extends 'partials/base.layout.twig' %}
 {% block head %}
-    {% from 'partials/head.macro.twig' import head_macro %}
-    {{ head_macro('Tennessee Emergency Services Inititative | Hayden Bradfield', 'https://tnesi.org/about-hayden-bradfield', 'website') }}
+    {% embed 'partials/head.embed.twig' %}
+        {% block title %}Tennessee Emergency Services Inititative | Hayden Bradfield{% endblock title %}
+        {% block type %}website{% endblock type %}
+        {% block ogURLPath %}https://tnesi.org/about-hayden-bradfield{% endblock ogURLPath %}
+        {% block canonicalURLPath %}https://tnesi.org/about-hayden-bradfield{% endblock canonicalURLPath %}
+    {% endembed %}
 {% endblock head %}
 {% block main %}
 <section class="about-page">

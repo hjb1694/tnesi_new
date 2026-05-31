@@ -1,7 +1,11 @@
 {% extends 'partials/base.layout.twig' %}
 {% block head %}
-    {% from 'partials/head.macro.twig' import head_macro %}
-    {{ head_macro('Tennessee Emergency Services Inititative', 'https://tnesi.org/', 'website') }}
+    {% embed 'partials/head.embed.twig' %}
+        {% block pagetitle %}Tennessee Emergency Services Inititative{% endblock pagetitle %}
+        {% block type %}website{% endblock type %}
+        {% block ogURLPath %}https://tnesi.org/{% endblock ogURLPath %}
+        {% block canonicalURLPath %}https://tnesi.org/{% endblock canonicalURLPath %}
+    {% endembed %}
 {% endblock head %}
 {% block main %}
     {% include 'partials/pages/home/hero.partial.twig' %}
