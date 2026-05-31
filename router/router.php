@@ -65,6 +65,7 @@ function use_router($app) {
         $published_date;
         $updated_date = NULL;
         $content;
+        $slug;
 
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
@@ -73,6 +74,7 @@ function use_router($app) {
                 $published_date = $row['published_date'];
                 $updated_date = $row['updated_date'];
                 $content = $row['content'];
+                $slug = $row['slug'];
             }
         }
 
@@ -81,7 +83,8 @@ function use_router($app) {
             "article_author" => $article_author,
             "published_date" => date('D, M. d, Y', strtotime($published_date)),
             "updated_date" => $updated_date !== NULL ? date('D, M. d, Y', strtotime($updated_date)) : NULL,
-            "content" => $content
+            "content" => $content,
+            "slug" => $slug
         ]);
     });
 

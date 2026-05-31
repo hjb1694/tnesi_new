@@ -1,13 +1,11 @@
 {% extends 'partials/base.layout.twig' %}
 {% block head %}
     {% embed 'partials/head.embed.twig' %}
-        {% block pagetitle %}{% endblock pagetitle %}
-        {% block type %}{% endblock type %}
-        {% block ogURLPath %}{% endblock ogURLPath %}
-        {% block canonicalURLPath %}{% endblock canonicalURLPath %}
+        {% block pagetitle %}TNESI Articles | All Articles{% endblock pagetitle %}
+        {% block type %}website{% endblock type %}
+        {% block ogURLPath %}https://tnesi.org/articles{% endblock ogURLPath %}
+        {% block canonicalURLPath %}https://tnesi.org/articles{% endblock canonicalURLPath %}
     {% endembed %}
-    {% from 'partials/head.macro.twig' import head_macro %}
-    {{ head_macro('Tennessee Emergency Services Inititative', 'https://tnesi.org/', 'website') }}
 {% endblock head %}
 {% block main %}
            <section class="articles-page">
