@@ -782,6 +782,23 @@ body {
     }
 }
 
+.errbox {
+    display:none;
+    background: rgb(255, 237, 237);
+    border: 1px solid #f00;
+    padding: 1rem;
+    font-size: 1.4rem;
+    color: #f00;
+
+    &::marker {
+        color: #f00;
+    }
+
+    &.show {
+        display: block;
+    }
+}
+
 
 @keyframes pulse {
     from {
