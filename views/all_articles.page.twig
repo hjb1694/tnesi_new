@@ -1,0 +1,30 @@
+{% extends 'partials/base.layout.twig' %}
+{% block head %}
+    {% from 'partials/head.macro.twig' import head_macro %}
+    {{ head_macro('Tennessee Emergency Services Inititative', 'https://tnesi.org/', 'website') }}
+{% endblock head %}
+{% block main %}
+           <section class="articles-page">
+            <section class="articles-page__header">
+                <h1>Articles</h1>
+            </section>
+            <section class="articles-page__body">
+                <div class="container">
+                {% for article in articles %}
+                    <div class="articles-list">
+                        <a class="articles-tile" href="/articles/{{ article.slug }}" data-aos="fade-up" data-aos-duration="500">
+                            <img src="{{ article.tile_image_uri }}" alt="{{ article.tile_image_alt }}" class="articles-tile__image" />
+                            <div class="articles-tile__body">
+                                <h3>{{ article.article_title }}</h3>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+                </div>
+            </section>
+        </section>
+{% endblock main %}
+{% block scripts %}
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init()</script>
+{% endblock scripts %}

@@ -85,6 +85,26 @@ function use_router($app) {
         ]);
     });
 
+    $app->get('/articles', function (Request $request, Response $response) {
+        $view = Twig::fromRequest($request);
+
+        $conn = createDBInstance();
+
+        $result = $conn->query("SELECT * FROM articles WHERE is_visible = 1 ORDER BY published_date DESC");
+
+        $articles = [];
+
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                array_push($articles, $row);
+            }
+        }
+
+        return $view->render($response, 'all_articles.page.twig', ["articles" => $articles]);
+    });
+
+    
+
    
 
 }

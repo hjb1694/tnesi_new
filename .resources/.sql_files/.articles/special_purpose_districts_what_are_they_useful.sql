@@ -1,0 +1,23 @@
+INSERT INTO articles (
+    article_title,
+    article_author,
+    published_date,
+    updated_date,
+    content,
+    tile_image_uri,
+    tile_image_alt,
+    is_featured,
+    is_visible,
+    slug
+) VALUES (
+    'Special Purpose Districts: What are they? Can they be useful?',
+    'Hayden Bradfield',
+    '2025-03-01',
+    NULL,
+    '<p>Cities and towns, also called municipalities, often (but not always) have their own fire departments. What if you live outside the corporate city or town limits? What about Emergency Medical Services? How are these handled county-wide? Many of these answers depend on which county you reside in.</p><p>In one west Tennessee county, a family found out the hard way. As their home was actively burning, a fire service refused to put out the fire as the family stood there. What happened? They forgot to pay a subscription fee. Despite the family''s pleas to pay on the spot, their request was denied.</p><p>In the case of the Obion County situation, the family lived outside city limits but within the county. Residents living outside the city could opt to pay a subscription fee to the city to respond to their residence. Obion county did not have a county-wide fire department, and a non-profit volunteer fire department apparently did not exist to serve their area. This story sparked outrage nationwide, and spawned a debate on who should be providing these services.</p><p>Many would argue fire departments and EMS are basic public safety services that would be funded through their tax dollars. Sadly, many counties do not see it that way. Knox County, Tennessee, home to the City of Knoxville and the state''s flagship university, the University of Tennessee, also has a subscription-based model for residents who live outside the corporate city limits of Knoxville. Recently, Knox County generated a record billion-dollar tax revenue for the first time, although addressing fire and emergency services was not a priority, and never really has. Rural Metro Fire, a for-profit company, provides fire services to the unincorporated parts of Knox County along with the Town of Farragut. Concerns and studies indicated these subscription fees unfairly burden willing subscribers, as Rural Metro will respond to anyone regardless if a subscription fee had been paid. Although, failure to pay an annual subscription will result in a massive bill if an emergency were to ever occur.</p><p>Pertaining to Emergency Medical Services (EMS)/ambulance services, counties are required to ensure an established ambulance service is in place. Some counties opt to contract with a private ambulance provider, granting them a monopoly on 911 medical emergencies. It is also a common occurance for counties to have their own EMS departments. Others rely on rescue squads and other non-profit entities to provide these services.</p><p>Now that these service models have been explained, what about the option for a special purpose district? Special purpose districts, also called "Authorities" in some places, are governmental entities that serve a singular purpose. They are autonomous from county and city governmental entities, and their district coverage can span across county lines and even cover municipalities. These entities do exist in Tennessee, examples being utility districts and school systems. These districts are overseen by a board of directors, with its members being elected by the residents, appointed by state and/or local leaders, or a combination of both. Sadly, at this time, these districts do not exist for the purpose of fire and emergency services in Tennessee. Could this be an answer to fill voids in Tennessee?</p><p>A good example to look at is West Metro Fire Rescue, serving Lakewood, Colorado and unincorporated portions of counties within that state. While a special purpose district like this one does not need to be this elaborate, it is an example of how these special purpose districts could benefit many areas. Citizens within the district can have involvement in key decisions with transparency, unlike many private entities. Citizens can attend board meetings and vote on levies and other key concerns. With the non-profit-organization fire departments and rescue squads that serve many areas in Tennessee, voting is often reserved internally only for its own volunteer members.</p><p>What are your thoughts?</p>',
+    '/assets/img/district_map.webp',
+    'an example district map of West Metro Fire Rescue in Colorado',
+    0,
+    1,
+    'special_purpose_districts_what_are_they_useful'
+);
