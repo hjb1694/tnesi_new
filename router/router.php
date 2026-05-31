@@ -158,9 +158,42 @@ function use_router($app) {
             $no_count = $row['nocounts'];
 
 
-            $responseData = json_encode(["message" => "created", "votedYes" => $yes_count, "votedno" => $no_count]);
+            $responseData = json_encode(["message" => "created", "votedYes" => $yes_count, "votedNo" => $no_count]);
             $response->getBody()->write($responseData);
             return $response->withHeader('Content-Type','application/json')->withStatus(201);
+
+        }
+        catch(Exception $e){
+            $payload = json_encode(["error_message" => $e->getMessage()]);
+            $code = 500;
+            if($e->getCode() > 400){
+                $code = $e->getCode();
+            }
+            $response->getBody()->write($payload);
+            return $response->withHeader('Content-Type','application/json')->withStatus($code);
+        }
+
+    });
+
+    $app->get('/fetch-knox-fire-votes', function (Request $request, Response $response) {
+        
+        try {
+
+            $conn = createDBInstance();
+
+            $result = $conn->query("SELECT count(id) AS yescount FROM knox_fire_poll_votes WHERE is_yes_vote = 1");
+            $row = $result->fetch_assoc();
+            $yes_count = $row['yescount'];
+
+            $result = $conn->query("SELECT count(id) AS nocounts FROM knox_fire_poll_votes WHERE is_yes_vote = 0");
+            $row = $result->fetch_assoc();
+            $no_count = $row['nocounts'];
+
+            $conn->close();
+
+            $responseData = json_encode(["votedYes" => $yes_count, "votedNo" => $no_count]);
+            $response->getBody()->write($responseData);
+            return $response->withHeader('Content-Type','application/json')->withStatus(200);
 
         }
         catch(Exception $e){

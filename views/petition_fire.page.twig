@@ -126,8 +126,60 @@
             </div>
         </article>
     </section>
+    <div class="petition-modal">
+        <div class="petition-modal__dialog">
+            <form class="petition-form">
+                <h2>"I support the formation of the Knox County Department of Fire and Emergency Services!"</h2>
+                <p class="petition-form__priv-stmt">Your most personal information, including your street address, email, and signed initials will not be shared publically and only with appropriate officials to prove validity of the petition.</p>
+                <div class="form-group">
+                    <div class="text-field">
+                        <label for="first-name" class="text-field__label">First Name</label>
+                        <input id="first-name" type="text" class="text-field__input" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-field">
+                        <label for="last-name" class="text-field__label">Last Name</label>
+                        <input id="last-name" type="text" class="text-field__input" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-field">
+                        <label for="email" class="text-field__label">Email</label>
+                        <input id="email" type="email" class="text-field__input" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-field">
+                        <label for="street1" class="text-field__label">Street Address</label>
+                        <input id="street1" type="email" class="text-field__input" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-field">
+                        <label for="street2" class="text-field__label">Apt./Suite</label>
+                        <input id="street2" type="email" class="text-field__input" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-field">
+                        <label for="street" class="text-field__label">Zip Code</label>
+                        <input id="street" type="email" class="text-field__input" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label style="font-size:1.2rem;font-weight:bold;">Please initial in the space below:</label>
+                    <canvas id="sig-pad"></canvas>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="submit-petition-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock main %}
 {% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@5.1.3/dist/signature_pad.umd.min.js"></script>
 <script>
 const voteOptions = document.querySelectorAll('.vote-box__option');
 const step1 = document.querySelector('.vote-box__step--1');
@@ -144,6 +196,7 @@ const pollQuestionnaireErrbox = document.querySelector('.poll-questionnaire-errb
 const castBtn = document.querySelector('.cast-btn');
 const yesTallyBar = document.querySelector('#yes-tally-bar');
 const noTallyBar = document.querySelector('#no-tally-bar');
+const petitionModal = document.querySelector('.petition-modal');
 let selectedOption;
 const pollQuestionVals = {
     isResident: null,
@@ -227,6 +280,15 @@ hasVotedOpts.forEach(o => {
 
 function createTallyGraph(yesVoteCount, noVoteCount){
 
+    yesTallyBar.querySelector('.tally-bar__text').innerText = `Yes (${yesVoteCount})`;
+    noTallyBar.querySelector('.tally-bar__text').innerText = `No (${noVoteCount})`;
+
+    const totalVoteCount = +yesVoteCount + +noVoteCount;
+    const yesPerc = (yesVoteCount / totalVoteCount) * 100;
+    const noPerc = (noVoteCount / totalVoteCount) * 100;
+
+    yesTallyBar.querySelector('.tally-bar__inner-bar').style.width = `${yesPerc}%`;
+    noTallyBar.querySelector('.tally-bar__inner-bar').style.width = `${noPerc}%`;
 
 }
 
@@ -240,7 +302,7 @@ function verifyPoll(){
     (pollQuestionVals.isOfAge === null) && (errors.push('Please select if you are over 18.'));
     (pollQuestionVals.isOfAge === false) && (errors.push('Sorry, you must be at least 18 to cast your poll vote.'));
     (pollQuestionVals.haveAlreadyVoted === null) && (errors.push('Please select if you have already voted in this poll.'));
-    (pollQuestionVals.haveAlreadyVoted === true) && (errors.push('Sorry, you may only vote once in this poll.'));
+    (pollQuestionVals.haveAlreadyVoted === true) && (errors.push('Please vote only once in this poll.'));
 
     if(errors.length){
         for(let error of errors){
@@ -293,6 +355,12 @@ async function submitPoll(e){
         step2.classList.remove('show');
         step3.classList.add('show');
 
+        createTallyGraph(data.votedYes, data.votedNo);
+
+        if(pollQuestionVals.willingToSign){
+            petitionModal.classList.add('show');
+        }
+
         console.log(data);
 
 
@@ -304,6 +372,29 @@ async function submitPoll(e){
 }
 
 pollVoteQuestionnaire.addEventListener('submit', submitPoll);
+
+async function getVotes(){
+    const response = await fetch('/fetch-knox-fire-votes', {
+        mode: 'no-cors',
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+
+    const data = await response.json();
+
+    createTallyGraph(data.votedYes, data.votedNo);
+}
+
+if(getCookie('hasVotedKnoxPoll')){
+    step1.classList.remove('show');
+    step2.classList.remove('show');
+    step3.classList.add('show');
+
+    getVotes();
+}
+
+const sigPad = new SignaturePad(document.querySelector('#sig-pad'));
 
 </script>
 {% endblock scripts %}
