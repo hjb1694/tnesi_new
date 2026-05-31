@@ -112,6 +112,59 @@ function use_router($app) {
         return $view->render($response, 'petition_fire.page.twig');
     });
 
+    $app->post('/process-knox-fire-poll-vote', function (Request $request, Response $response) {
+
+        $body = $request->getParsedBody();
+
+        try {
+
+            $fields = ['is_resident', 'is_of_age', 'has_already_voted', 'is_yes_vote'];
+
+            foreach($fields as $field){
+                if(!isset($body[$field])){
+                    throw new Exception('MISSING_FIELD', 422);
+                }
+            }
+
+            foreach($fields as $field){
+                if(in_array($body[$field], ['yes', 'no'])){
+                    throw new Exception('INVALID VALUES', 422);
+                }
+            }
+
+            function genBi($val){
+                return $val === "yes" ? 1 : 0;
+            }
+
+            $is_resident = genBi($body['is_resident']);
+            $is_of_age = genBi($body['is_of_age']);
+            $has_already_voted = genBi($body['has_already_voted']);
+            $is_yes_vote = genBi($body['is_yes_vote']);
+            $ip = $_SERVER['REMOTE_ADDR'];
+
+            $conn = createDBInstance();
+
+            $stmt = $conn->prepare("INSERT INTO knox_fire_poll_votes(is_resident, is_of_age, has_already_voted, is_yes_vote, ip) VALUES (?,?,?,?,?)");
+            $stmt->bind_param("iiiis", $is_resident, $is_of_age, $has_already_voted, $is_yes_vote, $ip);
+            $stmt->execute();
+
+            $responseData = json_encode(["message" => "created"]);
+            $response->getBody()->write($responseData);
+            return $response->withHeader('Content-Type','application/json')->withStatus(201);
+
+        }
+        catch(Exception $e){
+            $payload = json_encode(["error_message" => $e->getMessage()]);
+            $code = 500;
+            if($e->getCode > 400){
+                $code = $e->getCode();
+            }
+            $response->getBody()->write($payload);
+            return $response->withHeader('Content-Type','application/json')->withStatus($code);
+        }
+
+    });
+
     
 
    

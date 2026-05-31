@@ -188,6 +188,7 @@ hasVotedOpts.forEach(o => {
 
 function verifyPoll(){
     pollQuestionnaireErrbox.innerHTML = '';
+    pollQuestionnaireErrbox.classList.remove('show');
     let errors = [];
 
     (pollQuestionVals.isResident === null) && (errors.push('Please select your residency status to Knox County, TN.'));
@@ -201,15 +202,41 @@ function verifyPoll(){
         for(let error of errors){
             pollQuestionnaireErrbox.insertAdjacentHTML('beforeend', `<li>${error}</li>`);
         }
+        pollQuestionnaireErrbox.classList.add('show');
     }
 
     return !!!errors.length;
 }
 
+const genYesNo = val => (val ? 'yes' : 'no');
+
 function submitPoll(e){
     e.preventDefault();
 
     if(!verifyPoll()) return;
+
+    const fd = new FormData();
+    fd.append('is_resident', genYesNo(pollQuestionVals.isResident));
+    fd.append('is_of_age', genYesNo(pollQuestionVals.isOfAge));
+    fd.append('has_already_voted', genYesNo(pollQuestionVals.haveAlreadyVoted));
+    fd.append('is_yes_vote', selectedOption);
+
+
+    try{
+
+        await fetch('/process-knox-fire-poll-vote', {
+            method: 'POST',
+            mode: 'no-cors',
+            body: fd
+        });
+
+        
+
+    }
+    catch(e){
+        pollQuestionnaireErrbox.insertAdjacentHTML('beforeend', '<li>As error has occurred.</li>');
+        pollQuestionnaireErrbox.classList.add('show');
+    }
 }
 
 pollVoteQuestionnaire.addEventListener('submit', submitPoll);
