@@ -1,0 +1,25 @@
+{% extends 'partials/base.layout.twig' %}
+{% block head %}
+    {% from 'partials/head.macro.twig' import head_macro %}
+    {{ head_macro('Tennessee Emergency Services Inititative | Hayden Bradfield', 'https://tnesi.org/about-hayden-bradfield', 'website') }}
+{% endblock head %}
+{% block main %}
+<section class="about-page">
+    <section class="about-page__header">
+        <div class="about-page__header-contents">
+            <img src="/assets/img/me.png" alt="Hayden Bradfield" class="about-img" />
+            <div>
+                <h1 class="about-heading about-heading--primary">Fighting for Better Fire and Emergency Services Across Tennessee</h1>
+                <h2 class="about-heading about-heading--sub">&mdash; Hayden Bradfield of Knoxville, TN</h2>
+            </div>
+        </div>
+    </section>
+    <section class="about-page__body">
+        <div class="container">
+            <p>As a longtime Tennessee resident, I know we can do better. I formerly worked in public safety in Tennessee, yet I have trained and familiarized myself with other agencies and departments in other states. I had the privalege to work alongside some great departments within communities that cared and supported their heroes.</p>
+            <p>Sadly, I recognized the lack of resources, support, and recognition emergency services face in Tennessee. Since high school, I have taken a personal issue to this, and eventually, I was concerned enough to become more proactive in raising awareness. There are no incentives or profitable gains for me to advocate for better emergency services. I feel this is long-overdue, and I am passionate enough to push for reforms and for all emergency services to be recognized as an integral function of public safety.</p>
+        </div>
+    </section>
+</section>
+{% endblock main %}
+{% block scripts %}{% endblock scripts %}

@@ -26,6 +26,11 @@ function use_router($app) {
         return $view->render($response, 'take_action.page.twig');
     });
 
+    $app->get('/about-hayden-bradfield', function (Request $request, Response $response) {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'about_hayden_bradfield.page.twig');
+    });
+
 }
 
 ?>
