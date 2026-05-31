@@ -657,6 +657,132 @@ body {
 }
 
 
+.vote-box {
+    display: block;
+    max-width: 40rem;
+    padding: 2rem;
+    background: #fff;
+    box-shadow: 0 0 1rem rgba(0,0,0,.24);
+    margin:4rem auto;
+
+    &__step {
+        display:none;
+
+        &.show {
+            display: block;
+        }
+    }
+
+    &__option {
+        display: block;
+        width: 100%;
+        font-size: 1.4rem;
+        font-weight: bold;
+        cursor: pointer;
+        color: #fff;
+        padding: 1.5rem 2rem;
+        text-align: center;
+        border:none;
+        border-radius: 1rem;
+        transition: background .3s;
+
+        &:not(:last-child){
+            margin-bottom: 1rem;
+        }
+
+        &--yes {
+            background: #138a13;
+
+            &:hover {
+                background: #0c700c;
+            }
+        }
+
+        &--no {
+            background: #aa0606;
+
+            &:hover {
+                background: #850404;
+            }
+        }
+    }
+}
+
+.radio-tab-group {
+    display:flex;
+    align-items: center;
+
+    .radio-tab-option {
+
+        border: 1px solid #ccc;
+        width: 10rem;
+        overflow:hidden;
+
+        &:first-child {
+            border-radius: 1rem 0 0 1rem;
+        }
+
+        &:last-child {
+            border-radius: 0 1rem 1rem 0;
+            border-left:none;
+        }
+
+        &__tab {
+            padding: 2rem;
+            display:block;
+            background: #fff;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #555;
+            cursor:pointer;
+
+        }
+
+        &__radio {
+            display:none;
+        }
+
+        &__radio:checked + .radio-tab-option__tab {
+            background: #eee;
+        }
+    }
+}
+
+.form-group {
+    margin: 2rem 0;
+}
+
+.petition-sign-question {
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}
+
+.cast-btn {
+    display: block;
+    width: 100%;
+    padding: 2rem 1rem;
+    background: #2d6bac;
+    color: #fff;
+    border:none;
+    text-align: center;
+    font-family: inherit;
+    font-weight: bold;
+    cursor:pointer;
+    transition: background .3s;
+    border-radius: 1rem;
+
+    &:hover {
+        background: #1d4d81;
+    }
+}
+
+
 @keyframes pulse {
     from {
         transform:scale(1);

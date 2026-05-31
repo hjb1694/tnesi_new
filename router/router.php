@@ -106,6 +106,12 @@ function use_router($app) {
         return $view->render($response, 'all_articles.page.twig', ["articles" => $articles]);
     });
 
+    $app->get('/knox-fire-petition',  function (Request $request, Response $response) {
+        $view = Twig::fromRequest($request);
+
+        return $view->render($response, 'petition_fire.page.twig');
+    });
+
     
 
    

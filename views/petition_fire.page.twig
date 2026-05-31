@@ -39,13 +39,137 @@
                 I am a conservative, and I believe our government should budget and prioritize spending just like we as individuals and families have to. That being said, neglecting our public safety infrastructure, our emergency services, and the men and women who work in this field is an insult to not only those men and women but the cause. Treating fire and emergency services as a nice add-on package is a massive insult to the career and the cause. For the county to turn around and spend money on non-essentials is unacceptable. While EMS and law enforcement are classified as "essential services" and codified into state law as such, fire services are not officially deemed as such yet. I am hoping this will change down the pipeline.
                 </p>
                 <p>
-                Please sign the petition to compell county leaders to form the Knox County Department of Fire and Emergency Services.
+                Please sign the petition to compel county leaders to form the Knox County Department of Fire and Emergency Services.
                 </p>
+                <div class="vote-box">
+                    <div class="vote-box__step vote-box__step--1 show">
+                        <p>Do you support the formation of the Knox County Department of Fire and Emergency Services as explained in the petition above?</p>
+                        <button type="button" data-value="yes" class="vote-box__option vote-box__option--yes">YES</button>
+                        <button type="button" data-value="no" class="vote-box__option vote-box__option--no">NO</button>
+                    </div>
+                    <div class="vote-box__step vote-box__step--2">
+                        <p class="vote-select-conf-text"></p>
+                        <form>
+                            <div class="form-group">
+                                <p>1. Are you a Knox County resident?</p>
+                                <div class="radio-tab-group">
+                                    <label class="radio-tab-option">
+                                        <input class="radio-tab-option__radio" type="radio" name="is-resident" value="yes" />
+                                        <div class="radio-tab-option__tab">Yes</div>
+                                    </label>
+                                    <label class="radio-tab-option">
+                                        <input class="radio-tab-option__radio" type="radio" name="is-resident" value="no" />
+                                        <div class="radio-tab-option__tab">No</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p>2. Are you at least 18 years of age or older?</p>
+                                <div class="radio-tab-group">
+                                    <label class="radio-tab-option">
+                                        <input class="radio-tab-option__radio" type="radio" name="age-veri" value="yes" />
+                                        <div class="radio-tab-option__tab">Yes</div>
+                                    </label>
+                                    <label class="radio-tab-option">
+                                        <input class="radio-tab-option__radio" type="radio" name="age-veri" value="no" />
+                                        <div class="radio-tab-option__tab">No</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p>3. Have you voted on this poll before?</p>
+                                <div class="radio-tab-group">
+                                    <label class="radio-tab-option">
+                                        <input class="radio-tab-option__radio" type="radio" name="prev-poll-vote" value="yes" />
+                                        <div class="radio-tab-option__tab">Yes</div>
+                                    </label>
+                                    <label class="radio-tab-option">
+                                        <input class="radio-tab-option__radio" type="radio" name="prev-poll-vote" value="no" />
+                                        <div class="radio-tab-option__tab">No</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group petition-sign-question">
+                                <p>4. Will you be willing to sign the petition? (If wanting to sign, you will only be able to do so during this poll vote)</p>
+                                <div class="radio-tab-group">
+                                    <label class="radio-tab-option">
+                                        <input class="radio-tab-option__radio" type="radio" name="will-sign" value="yes" />
+                                        <div class="radio-tab-option__tab">Yes</div>
+                                    </label>
+                                    <label class="radio-tab-option">
+                                        <input class="radio-tab-option__radio" type="radio" name="will-sign" value="no" />
+                                        <div class="radio-tab-option__tab">No</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="cast-btn">Cast Poll Vote</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </article>
     </section>
 {% endblock main %}
 {% block scripts %}
-
 <script>
+const voteOptions = document.querySelectorAll('.vote-box__option');
+const step1 = document.querySelector('.vote-box__step--1');
+const step2 = document.querySelector('.vote-box__step--2');
+const voteSelectConfText = document.querySelector('.vote-select-conf-text');
+const petitionSignQuestion = document.querySelector('.petition-sign-question');
+const willSignOpts = document.getElementsByName('will-sign');
+const isResidentOpts = document.getElementsByName('is-resident');
+const ageVeriOpts = document.getElementsByName('age-veri');
+const hasVotedOpts = document.getElementsByName('prev-poll-vote');
+const castBtn = document.querySelector('.cast-btn');
+let selectedOption;
+const pollQuestionVals = {
+    isResident: null,
+    isOfAge: null,
+    haveAlreadyVoted: null,
+    willingToSign: null
+}
+
+const resetPollQuestionVals = () => {
+    for(let key in pollQuestionVals){
+        pollQuestionVals[key] = null;
+    }
+}
+
+const setPollQuestionVal = (key, value) => {
+    pollQuestionVals[key] = value;
+}
+
+voteOptions.forEach(o => {
+    o.addEventListener('click', evt => {
+        selectedOption = evt.target.getAttribute('data-value');
+        step1.classList.remove('show');
+        step2.classList.add('show');
+
+        voteSelectConfText.innerHTML = `You selected <strong>"${selectedOption}."</strong>`;
+
+        if(selectedOption === 'yes'){
+            petitionSignQuestion.classList.add('show');
+        }
+    });
+});
+
+willSignOpts.forEach(o => {
+    o.addEventListener('change', evt => {
+        pollQuestionVals.willingToSign = (evt.target.value === 'yes');
+        if(evt.target.value === 'yes'){
+            castBtn.innerText = 'Cast Poll Vote + Sign Petition';
+            return;
+        }
+        castBtn.innerText = 'Cast Poll Vote';
+    })
+});
+
+isResidentOpts.forEach(o => {
+    o.addEventListener('change', evt => {
+        pollQuestionVals.isResident = (evt.target.value === 'yes');
+    });
+});
+
+</script>
 {% endblock scripts %}
