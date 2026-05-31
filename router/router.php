@@ -4,7 +4,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
 
-require __DIR__ . "/util/dbo.php";
+require __DIR__ . "/../util/dbo.php";
 
 function use_router($app) {
 
@@ -13,7 +13,7 @@ function use_router($app) {
 
         $conn = createDBInstance();
 
-        $result = $conn->query("SELECT * FROM articles WHERE is_featured = 1 ORDER BY published_date DESC");
+        $result = $conn->query("SELECT * FROM articles WHERE is_featured = 1 AND is_visible = 1 ORDER BY published_date DESC");
 
         $featured_articles = [];
 
@@ -45,6 +45,47 @@ function use_router($app) {
         $view = Twig::fromRequest($request);
         return $view->render($response, 'about_hayden_bradfield.page.twig');
     });
+
+    $app->get('/articles/{slug}', function (Request $request, Response $response, $args) {
+        $view = Twig::fromRequest($request);
+
+        $slug = $args['slug'];
+
+        $article;
+
+        $conn = createDBInstance();
+
+        $stmt = $conn->prepare("SELECT * FROM articles WHERE slug = ?");
+        $stmt->bind_param("s", $slug);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $article_title;
+        $article_author;
+        $published_date;
+        $updated_date = NULL;
+        $content;
+
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $article_title = $row['article_title'];
+                $article_author = $row['article_author'];
+                $published_date = $row['published_date'];
+                $updated_date = $row['updated_date'];
+                $content = $row['content'];
+            }
+        }
+
+        return $view->render($response, 'article.page.twig', [
+            "article_title" => $article_title,
+            "article_author" => $article_author,
+            "published_date" => date('D, M. d, Y', strtotime($published_date)),
+            "updated_date" => $updated_date !== NULL ? date('D, M. d, Y', strtotime($updated_date)) : NULL,
+            "content" => $content
+        ]);
+    });
+
+   
 
 }
 

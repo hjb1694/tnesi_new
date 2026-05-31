@@ -1,0 +1,42 @@
+{% extends 'partials/base.layout.twig' %}
+{% block head %}
+    {% from 'partials/head.macro.twig' import head_macro %}
+    {{ head_macro('Tennessee Emergency Services Inititative', 'https://tnesi.org/articles', 'article') }}
+{% endblock head %}
+{% block main %}
+<section class="article-page">
+        <section class="article-page__header">
+            <div class="container">
+                <h1>{{ article_title }}</h1>
+                <p><img src="/assets/icons/article_person.svg" alt="person icon" /><span>by {{ article_author }}</span></p>
+                <p><img src="/assets/icons/clock.svg" alt="clock icon"/><span>Published {{ published_date }}</span></p>
+                {% if updated_date %}
+                <p><img src="/assets/icons/clock.svg" alt="clock icon"/><span>Updated {{ updated_date }}</span></p>
+                {% endif %}
+            </div>
+        </section>
+        <article class="article-page__body">
+            <div class="container">
+                {{ content|raw }}
+            </div>
+        </article>
+    </section>
+{% endblock main %}
+{% block scripts %}
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init()</script>
+<script>
+const voteToggles = document.querySelectorAll('.votes__header') || null;
+
+if(voteToggles){
+    voteToggles.forEach(t => {
+        t.addEventListener('click', e => {
+            const id = e.target.id;
+
+            document.querySelector(`.votes__body[data-toggle="${id}"]`).classList.toggle('show');
+            e.target.querySelector('.votes__toggle-icon').classList.toggle('open-mode');
+        });
+    });
+}
+</script>
+{% endblock scripts %}
