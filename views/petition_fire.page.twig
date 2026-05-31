@@ -133,6 +133,26 @@ const pollQuestionVals = {
     willingToSign: null
 }
 
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
 const resetPollQuestionVals = () => {
     for(let key in pollQuestionVals){
         pollQuestionVals[key] = null;
@@ -224,13 +244,21 @@ function submitPoll(e){
 
     try{
 
-        await fetch('/process-knox-fire-poll-vote', {
+        const response = await fetch('/process-knox-fire-poll-vote', {
             method: 'POST',
             mode: 'no-cors',
+            headers: {
+                'Accept': 'application/json'
+            },
             body: fd
         });
 
-        
+        if(!response.ok){
+            throw new Error();
+        }
+
+        setCookie('hasVotedKnoxPoll', 'yes', 180);
+
 
     }
     catch(e){

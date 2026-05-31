@@ -147,8 +147,18 @@ function use_router($app) {
             $stmt = $conn->prepare("INSERT INTO knox_fire_poll_votes(is_resident, is_of_age, has_already_voted, is_yes_vote, ip) VALUES (?,?,?,?,?)");
             $stmt->bind_param("iiiis", $is_resident, $is_of_age, $has_already_voted, $is_yes_vote, $ip);
             $stmt->execute();
+            $stmt->close();
 
-            $responseData = json_encode(["message" => "created"]);
+            $result = $conn->query("SELECT count(id) AS yescount FROM knox_fire_poll_votes WHERE is_yes_vote = 1");
+            $row = $result->fetch_assoc();
+            $yes_count = $row['yescount'];
+
+            $result = $conn->query("SELECT count(id) AS nocounts FROM knox_fire_poll_votes WHERE is_yes_vote = 0");
+            $row = $result->fetch_assoc();
+            $no_count = $row['nocounts'];
+
+
+            $responseData = json_encode(["message" => "created", "votedYes" => $yes_count, "votedno" => $no_count]);
             $response->getBody()->write($responseData);
             return $response->withHeader('Content-Type','application/json')->withStatus(201);
 
