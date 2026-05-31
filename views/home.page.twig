@@ -8,4 +8,7 @@
     {% include 'partials/pages/home/about_section.partial.twig' %}
     {% include 'partials/pages/home/articles_section.partial.twig' %}
 {% endblock main %}
-{% block scripts %}{% endblock scripts %}
+{% block scripts %}
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init()</script>
+{% endblock scripts %}
