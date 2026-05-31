@@ -106,6 +106,22 @@
                             <ul class="errbox poll-questionnaire-errbox"></ul>
                         </form>
                     </div>
+                    <div class="vote-box__step vote-box__step--3">
+                        <p>Thank you for your poll vote!</p>
+                        <p>See results so far here:</p>
+                        <div class="tally-bar" id="yes-tally-bar">
+                            <div class="tally-bar__text">Yes</div>
+                            <div class="tally-bar__outer-bar">
+                                <div class="tally-bar__inner-bar"></div>
+                            </div>
+                        </div>
+                        <div class="tally-bar" id="no-tally-bar">
+                            <div class="tally-bar__text">No</div>
+                            <div class="tally-bar__outer-bar">
+                                <div class="tally-bar__inner-bar"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </article>
@@ -116,6 +132,7 @@
 const voteOptions = document.querySelectorAll('.vote-box__option');
 const step1 = document.querySelector('.vote-box__step--1');
 const step2 = document.querySelector('.vote-box__step--2');
+const step3 = document.querySelector('.vote-box__step--3');
 const voteSelectConfText = document.querySelector('.vote-select-conf-text');
 const petitionSignQuestion = document.querySelector('.petition-sign-question');
 const willSignOpts = document.getElementsByName('will-sign');
@@ -123,8 +140,10 @@ const isResidentOpts = document.getElementsByName('is-resident');
 const ageVeriOpts = document.getElementsByName('age-veri');
 const hasVotedOpts = document.getElementsByName('prev-poll-vote');
 const pollVoteQuestionnaire = document.querySelector('.poll-vote-questionnaire');
-const pollQuestionnaireErrbox = document.querySelector('.poll-questionnnaire-errbox');
+const pollQuestionnaireErrbox = document.querySelector('.poll-questionnaire-errbox');
 const castBtn = document.querySelector('.cast-btn');
+const yesTallyBar = document.querySelector('#yes-tally-bar');
+const noTallyBar = document.querySelector('#no-tally-bar');
 let selectedOption;
 const pollQuestionVals = {
     isResident: null,
@@ -206,6 +225,11 @@ hasVotedOpts.forEach(o => {
     });
 });
 
+function createTallyGraph(yesVoteCount, noVoteCount){
+
+
+}
+
 function verifyPoll(){
     pollQuestionnaireErrbox.innerHTML = '';
     pollQuestionnaireErrbox.classList.remove('show');
@@ -216,7 +240,7 @@ function verifyPoll(){
     (pollQuestionVals.isOfAge === null) && (errors.push('Please select if you are over 18.'));
     (pollQuestionVals.isOfAge === false) && (errors.push('Sorry, you must be at least 18 to cast your poll vote.'));
     (pollQuestionVals.haveAlreadyVoted === null) && (errors.push('Please select if you have already voted in this poll.'));
-    (pollQuestionVals.isOfAge === false) && (errors.push('Sorry, you may only vote once in this poll.'));
+    (pollQuestionVals.haveAlreadyVoted === true) && (errors.push('Sorry, you may only vote once in this poll.'));
 
     if(errors.length){
         for(let error of errors){
@@ -230,7 +254,7 @@ function verifyPoll(){
 
 const genYesNo = val => (val ? 'yes' : 'no');
 
-function submitPoll(e){
+async function submitPoll(e){
     e.preventDefault();
 
     if(!verifyPoll()) return;
@@ -240,6 +264,11 @@ function submitPoll(e){
     fd.append('is_of_age', genYesNo(pollQuestionVals.isOfAge));
     fd.append('has_already_voted', genYesNo(pollQuestionVals.haveAlreadyVoted));
     fd.append('is_yes_vote', selectedOption);
+
+    console.log('is_resident ', genYesNo(pollQuestionVals.isResident));
+    console.log('is_of_age ', genYesNo(pollQuestionVals.isOfAge));
+    console.log('has_already_voted ', genYesNo(pollQuestionVals.haveAlreadyVoted));
+    console.log('is_yes_vote ', selectedOption);
 
 
     try{
@@ -258,6 +287,13 @@ function submitPoll(e){
         }
 
         setCookie('hasVotedKnoxPoll', 'yes', 180);
+
+        const data = await response.json();
+
+        step2.classList.remove('show');
+        step3.classList.add('show');
+
+        console.log(data);
 
 
     }

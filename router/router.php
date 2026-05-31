@@ -127,7 +127,7 @@ function use_router($app) {
             }
 
             foreach($fields as $field){
-                if(in_array($body[$field], ['yes', 'no'])){
+                if(!in_array($body[$field], ['yes', 'no'])){
                     throw new Exception('INVALID VALUES', 422);
                 }
             }
@@ -166,7 +166,7 @@ function use_router($app) {
         catch(Exception $e){
             $payload = json_encode(["error_message" => $e->getMessage()]);
             $code = 500;
-            if($e->getCode > 400){
+            if($e->getCode() > 400){
                 $code = $e->getCode();
             }
             $response->getBody()->write($payload);
