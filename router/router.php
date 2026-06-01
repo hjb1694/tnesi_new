@@ -208,6 +208,91 @@ function use_router($app) {
 
     });
 
+    $app->post('/knox-fire-petition', function (Request $request, Response $response) {
+        try {
+
+            $body = $request->getParsedBody();
+
+            $fields = ['first_name', 'last_name', 'email', 'street1', 'street2', 'zip', 'sig_initials'];
+
+            foreach($fields as $field){
+                if(!isset($body[$field])){
+                    throw new Exception('MISSING_FIELD', 422);
+                }
+            }
+
+            $validationErrorsCount = 0;
+
+            $firstName = trim($body['first_name']);
+            $lastName = trim($body['last_name']);
+            $email = trim($body['email']);
+            $street1 = trim($body['street1']);
+            $street2 = trim($body['street2']);
+            $zipCode = trim($body['zip']);
+            $sigInitials = $body['sig_initials'];
+
+            if(grapheme_strlen($firstName) < 2 || grapheme_strlen($firstName) > 50){
+                $validationErrorsCount++;
+            }
+
+            if(grapheme_strlen($lastName) < 2 || grapheme_strlen($lastName) > 50){
+                $validationErrorsCount++;
+            }
+
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $validationErrorsCount++;
+            }
+
+            if(grapheme_strlen($street1) < 5 || grapheme_strlen($street1) > 200){
+                $validationErrorsCount++;
+            }
+
+            if(grapheme_strlen($street2) > 20){
+                $validationErrorsCount++;
+            }
+
+            if(!preg_match('/^[0-9]{5}$/', $zip)){
+                $validationErrorsCount++;
+            }
+
+            if(grapheme_strlen($sigInitials) > 150000){
+                $validationErrorsCount++;
+            }
+
+            if(count($validationErrorsCount) > 0){
+                throw new Exception('ERR_VALUES', 422);
+            }
+
+
+            $SAFE_firstName = htmlspecialchars($firstName);
+            $SAFE_lastName = htmlspecialchars($lastName);
+            $SAFE_street1 = htmlspecialchars($street1);
+            $SAFE_street2 = (grapheme_strlen($street2) < 1) ? NULL : htmlspecialchars($street2);
+            $ip = $_SERVER['REMOTE_ADDR'];
+
+            $conn = createDBInstance();
+
+            $stmt = $conn->prepare("INSERT INTO petition_signatures(first_name, last_name, email, street1, street2, zip, sig_initials, ip) VALUES(?,?,?,?,?,?,?,?)");
+            $stmt->bind_param("ssssssss", $SAFE_firstName, $SAFE_lastName, $email, $SAFE_street1, $SAFE_street2, $zipCode, $sigInitials, $ip);
+            $stmt->execute();
+
+            $responseData = json_encode(["status" => "created"]);
+            $response->getBody()->write($responseData);
+            return $response->withHeader('Content-Type','application/json')->withStatus(201);
+
+
+        }
+        catch(Exception $e) {
+            $payload = json_encode(["error_message" => $e->getMessage()]);
+            $code = 500;
+            if($e->getCode() > 400){
+                $code = $e->getCode();
+            }
+            $response->getBody()->write($payload);
+            return $response->withHeader('Content-Type','application/json')->withStatus($code);
+        }
+    });
+
     
 
    

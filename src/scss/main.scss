@@ -764,7 +764,8 @@ body {
 }
 
 .cast-btn, 
-.submit-petition-btn {
+.submit-petition-btn,
+.petition-modal__close-btn {
     display: block;
     width: 100%;
     padding: 2rem 1rem;
@@ -858,6 +859,12 @@ body {
 
     .petition-form {
 
+        display:none;
+
+        &.show {
+            display: block;
+        }
+
         h2 {
             font-size: 2.2rem;
         }
@@ -865,6 +872,14 @@ body {
         &__priv-stmt {
             font-size: 1.4rem;
             margin: 1rem 0;
+        }
+    }
+
+    .thank-you-petition-message {
+        display:none;
+
+        &.show {
+            display: block;
         }
     }
 }

@@ -128,7 +128,7 @@
     </section>
     <div class="petition-modal">
         <div class="petition-modal__dialog">
-            <form class="petition-form">
+            <form class="petition-form show">
                 <h2>"I support the formation of the Knox County Department of Fire and Emergency Services!"</h2>
                 <p class="petition-form__priv-stmt">Your most personal information, including your street address, email, and signed initials will not be shared publically and only with appropriate officials to prove validity of the petition.</p>
                 <div class="form-group">
@@ -163,8 +163,8 @@
                 </div>
                 <div class="form-group">
                     <div class="text-field">
-                        <label for="street" class="text-field__label">Zip Code</label>
-                        <input id="street" type="email" class="text-field__input" />
+                        <label for="zip" class="text-field__label">Zip Code</label>
+                        <input id="zip" type="text" class="text-field__input" inputmode="numeric"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -174,11 +174,17 @@
                 <div class="form-group">
                     <button type="submit" class="submit-petition-btn">Submit</button>
                 </div>
+                <ul class="errbox petition-form-errbox"></ul>
             </form>
+            <div class="thank-you-petition-message">
+                <p>Thank you for signing this petition!</p>
+                <button class="petition-modal__close-btn">Close</button>
+            </div>
         </div>
     </div>
 {% endblock main %}
 {% block scripts %}
+<script src="https://unpkg.com/imask"></script>
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@5.1.3/dist/signature_pad.umd.min.js"></script>
 <script>
 const voteOptions = document.querySelectorAll('.vote-box__option');
@@ -197,6 +203,11 @@ const castBtn = document.querySelector('.cast-btn');
 const yesTallyBar = document.querySelector('#yes-tally-bar');
 const noTallyBar = document.querySelector('#no-tally-bar');
 const petitionModal = document.querySelector('.petition-modal');
+const petitionForm = document.querySelector('.petition-form');
+const petitionFormErrbox = document.querySelector('.petition-form-errbox');
+const sigPad = new SignaturePad(document.querySelector('#sig-pad'));
+const petitionThanks = document.querySelector('.thank-you-petition-message');
+const petitionModalCloseBtn = document.querySelector('.petition-modal__close-btn');
 let selectedOption;
 const pollQuestionVals = {
     isResident: null,
@@ -327,11 +338,6 @@ async function submitPoll(e){
     fd.append('has_already_voted', genYesNo(pollQuestionVals.haveAlreadyVoted));
     fd.append('is_yes_vote', selectedOption);
 
-    console.log('is_resident ', genYesNo(pollQuestionVals.isResident));
-    console.log('is_of_age ', genYesNo(pollQuestionVals.isOfAge));
-    console.log('has_already_voted ', genYesNo(pollQuestionVals.haveAlreadyVoted));
-    console.log('is_yes_vote ', selectedOption);
-
 
     try{
 
@@ -394,7 +400,103 @@ if(getCookie('hasVotedKnoxPoll')){
     getVotes();
 }
 
-const sigPad = new SignaturePad(document.querySelector('#sig-pad'));
+function validatePetitionForm(fields){
+    petitionFormErrbox.innerHTML = '';
+    petitionFormErrbox.classList.remove('show');
+    const errors = [];
+    const emailRegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/gi;
+    const streetRegExp = /^[0-9]{1,} ./gi;
+    const zipRegExp = /^[0-9]{5}$/gi;
+
+    (fields.firstName.value.trim().length < 2) && (errors.push('Please enter a valid first name.'));
+    (fields.lastName.value.trim().length < 2) && (errors.push('Please enter a valid last name.'));
+    (!emailRegExp.test(fields.email.value)) && (errors.push('Please enter a valid email address.'));
+    (!streetRegExp.test(fields.street1.value)) && errors.push('Please enter a valid street address.');
+    (!zipRegExp.test(fields.zip.value)) && errors.push('Please enter a valid zip code.');
+    (sigPad.isEmpty()) && errors.push('Please add your initials.');
+
+    if(errors.length){
+        for(let error of errors){
+            petitionFormErrbox.insertAdjacentHTML('beforeend', `<li>${error}</li>`);
+        }
+    }
+
+    return !!!errors.length;
+
+
+
+}
+
+
+async function submitPetitionForm(e){
+    e.preventDefault();
+
+    const fields = {
+        firstName: document.querySelector('#first-name'),
+        lastName: document.querySelector('#last-name'),
+        email: document.querySelector('#email'),
+        street1: document.querySelector('#street1'),
+        street2: document.querySelector('#street2'),
+        zip: document.querySelector('#zip')
+    }
+
+    if(!validatePetitionForm(fields)) return;
+
+    try{
+
+        const fd = new FormData();
+        fd.append('first_name', fields.firstName.value);
+        fd.append('last_name', fields.lastName.value);
+        fd.append('email', fields.email.value);
+        fd.append('street1', fields.street1.value);
+        fd.append('street2', fields.street2.value || '');
+        fd.append('zip', fields.zip.value);
+        fd.append('sig_initials', sigPad.toDataURL());
+
+        console.log('first_name ', fields.firstName.value);
+        console.log('last_name ', fields.lastName.value);
+        console.log('email ', fields.email.value);
+        console.log('street1', fields.street1.value);
+        console.log('street2', fields.street2.value || '');
+        console.log('zip', fields.zip.value);
+        console.log('sig_initials', sigPad.toDataURL());
+
+        const response = await fetch('/knox-fire-petition', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Accept': 'application/json'
+            },
+            body: fd
+        });
+
+        if(!response.ok){
+            throw new Error();
+        }
+
+        petitionForm.classList.remove('show');
+        petitionThanks.classList.add('show');
+
+
+
+    }
+    catch(err){
+        petitionFormErrbox.insertAdjacentHTML('beforeend', '<li>An error has occurred.</li>');
+        petitionFormErrbox.classList.add('show');
+    }
+
+}
+
+
+petitionForm.addEventListener('click', submitPetitionForm);
+
+IMask(document.querySelector('#zip'), {
+    mask: '00000'
+});
+
+petitionModalCloseBtn.addEventListener('click', () => {
+    petitionModal.classList.remove('show');
+});
 
 </script>
 {% endblock scripts %}
