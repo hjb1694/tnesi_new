@@ -878,6 +878,11 @@ body {
     .thank-you-petition-message {
         display:none;
 
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+        }
+
         &.show {
             display: block;
         }

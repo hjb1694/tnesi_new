@@ -231,11 +231,11 @@ function use_router($app) {
             $zipCode = trim($body['zip']);
             $sigInitials = $body['sig_initials'];
 
-            if(grapheme_strlen($firstName) < 2 || grapheme_strlen($firstName) > 50){
+            if(strlen($firstName) < 2 || strlen($firstName) > 50){
                 $validationErrorsCount++;
             }
 
-            if(grapheme_strlen($lastName) < 2 || grapheme_strlen($lastName) > 50){
+            if(strlen($lastName) < 2 || strlen($lastName) > 50){
                 $validationErrorsCount++;
             }
 
@@ -243,23 +243,19 @@ function use_router($app) {
                 $validationErrorsCount++;
             }
 
-            if(grapheme_strlen($street1) < 5 || grapheme_strlen($street1) > 200){
+            if(strlen($street1) < 5 || strlen($street1) > 200){
                 $validationErrorsCount++;
             }
 
-            if(grapheme_strlen($street2) > 20){
+            if(strlen($street2) > 20){
                 $validationErrorsCount++;
             }
 
-            if(!preg_match('/^[0-9]{5}$/', $zip)){
+            if(!preg_match('/^[0-9]{5}$/', $zipCode)){
                 $validationErrorsCount++;
             }
 
-            if(grapheme_strlen($sigInitials) > 150000){
-                $validationErrorsCount++;
-            }
-
-            if(count($validationErrorsCount) > 0){
+            if($validationErrorsCount > 0){
                 throw new Exception('ERR_VALUES', 422);
             }
 
@@ -267,7 +263,7 @@ function use_router($app) {
             $SAFE_firstName = htmlspecialchars($firstName);
             $SAFE_lastName = htmlspecialchars($lastName);
             $SAFE_street1 = htmlspecialchars($street1);
-            $SAFE_street2 = (grapheme_strlen($street2) < 1) ? NULL : htmlspecialchars($street2);
+            $SAFE_street2 = (strlen($street2) < 1) ? NULL : htmlspecialchars($street2);
             $ip = $_SERVER['REMOTE_ADDR'];
 
             $conn = createDBInstance();
@@ -281,8 +277,7 @@ function use_router($app) {
             return $response->withHeader('Content-Type','application/json')->withStatus(201);
 
 
-        }
-        catch(Exception $e) {
+        }catch(Exception $e) {
             $payload = json_encode(["error_message" => $e->getMessage()]);
             $code = 500;
             if($e->getCode() > 400){
