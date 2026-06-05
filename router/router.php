@@ -288,6 +288,41 @@ function use_router($app) {
         }
     });
 
+
+    $app->get('/fetch-public-signed-list-knox-fire-petition', function (Request $request, Response $response) {
+        
+        try {
+
+            $conn = createDBInstance();
+
+            $sig_list = [];
+
+            $result = $conn->query("SELECT first_name, CONCAT(UPPER(SUBSTRING(last_name,1,1)),'.') AS last_name_initial, zip FROM petition_signatures ORDER BY submitted_at DESC");
+
+            while($row = $result->fetch_assoc()){
+                array_push($sig_list, $row);
+            }
+           
+
+            $conn->close();
+
+            $responseData = json_encode(["sig_list" => $sig_list]);
+            $response->getBody()->write($responseData);
+            return $response->withHeader('Content-Type','application/json')->withStatus(200);
+
+        }
+        catch(Exception $e){
+            $payload = json_encode(["error_message" => $e->getMessage()]);
+            $code = 500;
+            if($e->getCode() > 400){
+                $code = $e->getCode();
+            }
+            $response->getBody()->write($payload);
+            return $response->withHeader('Content-Type','application/json')->withStatus($code);
+        }
+
+    });
+
     
 
    

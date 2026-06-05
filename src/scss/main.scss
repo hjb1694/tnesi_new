@@ -913,6 +913,94 @@ body {
     }
 }
 
+.qna-section {
+    margin:3rem 0;
+
+    &__heading {
+        font-size:2.4rem;
+        font-weight: bold;
+        margin-bottom:2rem;
+        text-align: center;
+    }
+}
+
+.accordion {
+    max-width: 80rem;
+    margin:2rem auto;
+    box-shadow: 0 0 1rem rgba(0,0,0,.24);
+
+    &__tab {
+        padding:1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor:pointer;
+        background: #fff;
+
+    }
+
+    &__tab-text {
+        flex-grow:1;
+        font-size: 2rem !important;
+        margin:0 !important;
+        padding:0;
+        pointer-events: none;
+    }
+
+    &__body {
+        padding: 1rem;
+        display:none;
+        background: #fff;
+
+        &.show {
+            display:block;
+        }
+    }
+
+    &__toggle-icon {
+        width: 2rem;
+        flex-shrink:0;
+        pointer-events: none;
+        transition: transform .3s;
+
+        &.open {
+            transform: rotate(-180deg);
+        }
+    }
+}
+
+.who-signed-section {
+    margin:3rem 0;
+
+    &__loading {
+        display: block;
+        width: 10rem;
+        margin:2rem auto;
+
+        &.hide {
+            display:none;
+        }
+    }
+}
+
+.who-signed-list {
+    list-style: none;
+    max-width: 80rem;
+    margin:2rem auto;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:0 1rem;
+
+        &:not(:last-child){
+            border-bottom: 1px solid #aaa;
+        }
+    }
+    
+}
+
 
 @keyframes pulse {
     from {

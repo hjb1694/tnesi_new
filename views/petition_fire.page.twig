@@ -41,6 +41,35 @@
                 <p>
                 Please sign the petition to compel county leaders to form the Knox County Department of Fire and Emergency Services.
                 </p>
+                <div class="qna-section">
+                    <h2 class="qna-section__heading">Some Q&amp;A For Clarity</h2>
+                    <div class="accordion">
+                        <div class="accordion__tab" data-toggle="implement">
+                            <p class="accordion__tab-text">How could something this complex be <u>potentially</u> and <u>theoretically</u> implemented?</p>
+                            <img src="/assets/icons/arrow_collapse_black.svg" class="accordion__toggle-icon"/>
+                        </div>
+                        <div class="accordion__body" data-content="implement">
+                            <p>The Knox County Department of Fire and Emergency services could possibly be implemented in phases: "baby steps."</p>
+                            <p>First, the ambulance portion of the department can be formed with a priority of hiring firefighters cross-trained as EMTs and Paramedics. The primary, 911 ambulance part would cover all of Knox County, including the City of Knoxville. Knoxville Fire Department does not provide ambulance services to its city anyways, so the ambulance part of the newly-formed county department would cover all regions of Knox County. Older Firefighter/Paramedics nearing retirement age and seasoned EMS personnel that do not have firefighter credentials can opt to work within city limits on the ambulances there, while cross-trained firefighter/Paramedics operate outside the city limits "in the county" where the actual fire operations would be implemented. Private ambulance services could then bid/contract to take upon non-emergency calls, dialysis apointments, interfacility transports, and other convalescent calls. Funds accured from the ambulance operations and non-emergency contracted services would be placed in a special, isolated savings fund separate from the general county fund to be saved for purchasing medium-duty rescue trucks and fire engines. At that time, all county government funding for future parks and recreation amentity projects and county social/cultural programs would be paused or greatly reduced. Those funds would also be placed in the savings fund. Knox County Fire Prevention Bureau would be moved under the Knox County Department of Fire and Emergency Services as a division of the newly-formed department.</p>
+                            <p>Once savings are produced, the next phase would be to purchase the medium-duty rescue trucks then the fire engines. These vehicles/apparatus could potentially be acquired from existing agencies within the county. At that time, Rural/Metro and other existing fire service agencies would be phased out, along with any associated subscription models.</p>
+                            <p>To give a visual: The Knox County Department of Fire and Emergency Services would provide ambulance services, firefighting, and rescue within the unincorporated portions of the county along with the Town of Farragut. Only ambulance services and mutual aid would be provided to the City of Knoxville, since the goal is to leave the City of Knoxville Fire Department untouched as much as possible.</p>
+                            <p>Please do not base your petition signature or vote on this theoretical implementation approach example, as this is only one possible method of implementation. Of course, expert opinions will be needed on this one.</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <div class="accordion__tab" data-toggle="crucial">
+                                <p class="accordion__tab-text">Why are fire and emergency services so crucial?</p>
+                                <img src="/assets/icons/arrow_collapse_black.svg" class="accordion__toggle-icon"/>
+                            </div>
+                            <div class="accordion__body" data-content="crucial">
+                                <p>Our law enforcement, Fire/Rescue, and Emergency Medical Services (EMS) form the foundation and synergy of our public safety infrastructure. Other than responding to routine calls for assistance, they are vital for the readiness of our communities when larger-scale disaster strikes.</p>
+                                <p>With sociopolitical tensions high; with increased threats of deadly, severe weather; with an increased prevelance of threats of mass violence; and with concerns of domestic terrorism over these many years, our first responders are more valuable than ever! Subduing an active assailant is one act of importance, but responding to and aiding the critically wounded after an attack is just as crucial!</p>
+                                <p>If we are to have a government at all, what would some of its core responsibilities be? Wouldn't you imagine it be to maintain order, public safety, and to resolve disputes between parties? Fire and emergency services fall under the public safety umbrella just as our law enforcment agencies do. All of our uniformed first responders serve their own unique, vital role in keeping our communities safe. They are ESSENTIAL, and should be deemed as such!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2 style="font-size:2.4rem;text-align:center;">Now For the Poll and Petition Signing...</h2>
                 <div class="vote-box">
                     <div class="vote-box__step vote-box__step--1 show">
                         <p>Do you support the formation of the Knox County Department of Fire and Emergency Services as explained in the petition above?</p>
@@ -124,6 +153,12 @@
                     </div>
                 </div>
             </div>
+            <section class="who-signed-section">
+                <h2 style="font-size:2.4rem;text-align:center;">Who Signed the Petition</h2>
+                <img class="who-signed-section__loading" src="/assets/img/loading_spinner.gif" alt="Loading..." />
+                <ul class="who-signed-list">
+                </ul>
+            </section>
         </article>
     </section>
     <div class="petition-modal">
@@ -208,6 +243,9 @@ const petitionFormErrbox = document.querySelector('.petition-form-errbox');
 const sigPad = new SignaturePad(document.querySelector('#sig-pad'));
 const petitionThanks = document.querySelector('.thank-you-petition-message');
 const petitionModalCloseBtn = document.querySelector('.petition-modal__close-btn');
+const accordions = document.querySelectorAll('.accordion');
+const whoSignedLoading = document.querySelector('.who-signed-section__loading');
+const whoSignedList = document.querySelector('.who-signed-list');
 let selectedOption;
 const pollQuestionVals = {
     isResident: null,
@@ -400,6 +438,37 @@ if(getCookie('hasVotedKnoxPoll')){
     getVotes();
 }
 
+async function fetchSignedList(){
+
+    try{
+
+        const response = await fetch('/fetch-public-signed-list-knox-fire-petition', {mode: 'no-cors'});
+
+        if(!response.ok){
+            throw new Error();
+        }
+
+        whoSignedLoading.classList.add('hide');
+
+        const data = await response.json();
+
+        for(let item of data.sig_list){
+            whoSignedList.insertAdjacentHTML('beforeend', `
+            <li class="who-signed-list__item">
+                <div style="font-size:1.8rem;">${item.first_name} ${item.last_name_initial}</div>
+                <div style="font-size:1.8rem;">${item.zip}</div>
+            </li>
+            `);
+        }
+
+    }
+    catch(err){
+        console.error('Unable to fetch list');
+    }
+
+}
+
+
 function validatePetitionForm(fields){
     petitionFormErrbox.innerHTML = '';
     petitionFormErrbox.classList.remove('show');
@@ -497,6 +566,20 @@ IMask(document.querySelector('#zip'), {
 petitionModalCloseBtn.addEventListener('click', () => {
     petitionModal.classList.remove('show');
 });
+
+accordions.forEach(accordion => {
+    const tab = accordion.querySelector('.accordion__tab');
+    const body = accordion.querySelector('.accordion__body');
+
+    tab.addEventListener('click', evt => {
+        const dataId = evt.target.getAttribute('data-toggle');
+
+        document.querySelector(`.accordion__body[data-content="${dataId}"]`).classList.toggle('show');
+        evt.target.querySelector('.accordion__toggle-icon').classList.toggle('open');
+    });
+});
+
+fetchSignedList();
 
 </script>
 {% endblock scripts %}
